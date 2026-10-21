@@ -1,0 +1,23 @@
+{
+  "skill_name": "renginiai-rytoj",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Kokie 5 populiariausi renginiai rytoj vyksta Vilniuje? Ieškok Bilietai.lt.",
+      "expected_output": "Pateikia iki penkių patikrintų Bilietai.lt renginių, vykstančių rytoj Vilniuje, su tikslia data, laiku ir vieta, jei nurodyta, tiesioginėmis nuorodomis ir paaiškintu populiarumo pagrindu.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "Atrink penkis renginius rytoj Vilniuje, bet įsitikink, kad jie tikrai vyksta rytoj, o ne savaitgalį ar kitame mieste.",
+      "expected_output": "Patikrina renginio datą ir Vilniaus vietą kiekviename Bilietai.lt puslapyje; neįtraukia renginių, kurių data ar vieta nepatvirtinta.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "Duok populiariausių Bilietai.lt renginių rytoj Vilniuje sąrašą ir nurodyk, kodėl juos laikai populiariausiais.",
+      "expected_output": "Nurodo, ar Bilietai.lt turi aiškų populiarumo reitingą; jei ne, atvirai pažymi apytikslę atranką ir pateikia tik svetainėje matomus signalus, nekuria išgalvotų pardavimų skaičių.",
+      "files": []
+    }
+  ]
+}
