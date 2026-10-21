@@ -1,0 +1,4 @@
+interface:
+  display_name: "Renginiai rytoj"
+  short_description: "Suranda 5 populiariausius rytojaus renginius Vilniuje Bilietai.lt"
+  default_prompt: "Surask Bilietai.lt 5 populiariausius rytoj Vilniuje vyksiančius renginius."
