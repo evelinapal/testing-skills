@@ -1,0 +1,23 @@
+{
+  "skill_name": "skelbimai-tarandeje",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Surask šiandien Aruodas.lt įkeltus parduodamus namus Tarandėje.",
+      "expected_output": "Pateikiami tik Aruodas.lt namų pardavimo skelbimai Tarandėje, kurių įkėlimo data patvirtinta kaip šiandien; kiekvienam pateikiama kaina, vieta, plotas jei yra ir tiesioginė nuoroda. Aiškiai pranešama, jei rezultatų nėra arba datos neįmanoma patikrinti.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "Patikrink šiandienos Tarandės kotedžų ir sublokuotų namų skelbimus.",
+      "expected_output": "Kotedžai ir sublokuoti namai ieškomi Aruodas.lt pardavimo kategorijoje; įtraukiami tik Tarandėje esantys skelbimai, kurių paskelbimo data, o ne vien atnaujinimo data, sutampa su šiandienos data.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "Pateik šiandien įkeltus parduodamus žemės sklypus Tarandėje ir parodyk nuorodas.",
+      "expected_output": "Pateikiami tik patikrinti Aruodas.lt žemės sklypų pardavimo skelbimai Tarandėje, nurodant kainą, sklypo plotą jei yra, įkėlimo datą ir tiesioginę nuorodą; nėra išgalvotų rezultatų.",
+      "files": []
+    }
+  ]
+}
