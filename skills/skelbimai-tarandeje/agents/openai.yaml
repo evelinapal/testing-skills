@@ -1,0 +1,4 @@
+interface:
+  display_name: "Skelbimai Tarandėje"
+  short_description: "Randa šiandien įkeltus namų, kotedžų ir sklypų skelbimus Tarandėje"
+  default_prompt: "Patikrink Aruodas.lt ir pateik šiandien įkeltus namų, kotedžų ir žemės sklypų pardavimo skelbimus Tarandėje."
