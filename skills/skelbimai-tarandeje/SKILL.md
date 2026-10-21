@@ -1,6 +1,6 @@
 ---
 name: skelbimai-tarandeje
-description: Suranda Aruodas.lt šiandien įkeltus nekilnojamojo turto pardavimo skelbimus Vilniaus Tarandėje: namus, kotedžus ir žemės sklypus. Naudok šį įgūdį, kai vartotojas prašo naujų ar šiandien įkeltų skelbimų Tarandėje, ieško parduodamo namo, kotedžo arba sklypo Tarandėje, arba prašo patikrinti naujausius Aruodas.lt pasiūlymus šioje vietovėje.
+description: "Suranda Aruodas.lt šiandien įkeltus nekilnojamojo turto pardavimo skelbimus Vilniaus Tarandėje: namus, kotedžus ir žemės sklypus. Naudok šį įgūdį, kai vartotojas prašo naujų ar šiandien įkeltų skelbimų Tarandėje, ieško parduodamo namo, kotedžo arba sklypo Tarandėje, arba prašo patikrinti naujausius Aruodas.lt pasiūlymus šioje vietovėje."
 ---
 
 # Skelbimai Tarandėje
