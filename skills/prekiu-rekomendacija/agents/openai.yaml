@@ -1,0 +1,4 @@
+interface:
+  display_name: "Prekių rekomendacija"
+  short_description: "Parenka pagrįstą prekę iš palygintų modelių"
+  default_prompt: "Panaudok prekiu-palyginimas v2 JSON, patikrink privalomus kriterijus ir įrodymų kokybę, pasiūlyk tinkamiausią prekę bei iki dviejų alternatyvų. Jei duomenų nepakanka, nurodyk, ką patikrinti. Pateik rekomendacijos JSON."
