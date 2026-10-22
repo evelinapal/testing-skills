@@ -1,0 +1,4 @@
+interface:
+  display_name: "Prekių workflow"
+  short_description: "Ieško, palygina ir rekomenduoja prekes vienu iškvietimu"
+  default_prompt: "Panaudok mano GitHub evelinapal/testing-skills Skill prekiu-workflow: perskaityk ir nuosekliai vykdyk prekiu-paieska, prekiu-palyginimas ir prekiu-rekomendacija instrukcijas. Surask, palygink ir rekomenduok prekę pagal mano poreikius, parodyk patikros ribas ir JSON rezultatus."
