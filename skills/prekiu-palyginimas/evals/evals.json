@@ -1,57 +1,113 @@
 {
   "skill_name": "prekiu-palyginimas",
+  "version": "2.0",
   "evals": [
     {
       "id": 1,
-      "prompt": "Naudok prekiu-palyginimas ir palygink ankstesnio prekiu-paieska etapo 5 Apple ausinių modelius iki 300 €.",
-      "expected_output": "Palyginimo lentelė, kainų patikimumo žymos, ANC ir kitų palyginamų savybių skirtumai, privalumai bei kompromisai, validus JSON be galutinio laimėtojo.",
+      "prompt": "Palygink ankstesnius 5 Apple ausinių modelius pagal prekiu-paieska JSON. Nepasirink laimėtojo.",
+      "expected_output": "Lentelė, įrodymų būsenos, palyginimo issues, JSON schema_version 2.0 su atskiru comparison objektu.",
       "files": [],
       "assertions": [
-        "Neišrenka galutinio modelio.",
-        "Nesupainioja patvirtintų ir nepatvirtintų alternatyvių kainų.",
-        "Išsaugo modelių ID ir produkto nuorodas.",
-        "Grąžina criteria_values, advantages, tradeoffs."
+        "products[] išsaugo pradinius modelių ID ir URL",
+        "comparison.by_product_id susieja modelius pagal ID",
+        "winner_selected=false",
+        "Neapsimeta, kad pakartotinai patikrino kainas"
       ]
     },
     {
       "id": 2,
-      "prompt": "Palygink ausines A (100 €, ANC, baterija 6 val. su ANC) ir B (130 €, ANC, baterija 30 val. su dėklu).",
-      "expected_output": "Neprilygina 6 val. vieno įkrovimo ir 30 val. su dėklu; pažymi skirtingus baterijos matavimo pagrindus.",
+      "prompt": "A: baterija 6 val. vienu įkrovimu su ANC. B: baterija 30 val. su dėklu be ANC. Palygink.",
+      "expected_output": "Baterijos sąlygos normalizuojamos ir pažymimos nepalyginamomis.",
       "files": [],
       "assertions": [
-        "Aiškiai atskiria vieno įkrovimo ir su dėklu laiką.",
-        "Nepateikia klaidinančio baterijos laimėtojo."
+        "normalized_metrics išsaugo sąlygas",
+        "comparable=false arba lygiavertis aiškus apribojimas",
+        "Neskelbia tiesioginio baterijos laimėtojo"
       ]
     },
     {
       "id": 3,
-      "prompt": "Palygink tris ausines: A 90 € ANC; B 110 € ANC; C 95 € ANC nežinomas. Privalomas ANC ir biudžetas 100 €.",
-      "expected_output": "A atitinka, B neatitinka biudžeto, C ANC atitikimas nepatvirtintas; nepasirenka laimėtojo.",
+      "prompt": "Palygink A už 90 € su ANC, B už 110 € su ANC ir C už 95 € su nežinomu ANC. Biudžetas 100 €, ANC privalomas.",
+      "expected_output": "A atitinka tik jei kaina patvirtinta; B neatitinka; C nepatvirtinta. Nežinoma nėra ne.",
       "files": [],
       "assertions": [
-        "Neatmeta C kaip neturinčio ANC be įrodymo.",
-        "B pažymi kaip viršijantį biudžetą.",
-        "Nerenka laimėtojo."
+        "Biudžeto neatitikimas B",
+        "C ANC nepatvirtinta, o ne nėra",
+        "Kainos be verified_price nelaikomos patvirtintomis"
       ]
     },
     {
       "id": 4,
-      "prompt": "Palygink penkias prekes, bet nepateikiu nei jų pavadinimų, nei paieškos rezultatų.",
-      "expected_output": "Paprašo prekiu-paieska JSON arba modelių sąrašo; neišgalvoja prekių.",
+      "prompt": "Palygink modelius Apple AirPods 4 MXP63ZM/A ir AirPods 4 MXP63ZM/A iš dviejų parduotuvių.",
+      "expected_output": "Atpažįsta dublį pagal tikslų modelio kodą, nekuria dviejų skirtingų produktų.",
       "files": [],
       "assertions": [
-        "Prašo trūkstamos įvesties.",
-        "Nekuria netikrų modelių."
+        "Dublių aptikimas",
+        "Pardavėjų skirtumas nelaikomas nauju modeliu"
       ]
     },
     {
       "id": 5,
-      "prompt": "Palygink du modelius, kurių vieno kaina verified_price=false, o kito verified_price=true; pasakyk kuris pigesnis.",
-      "expected_output": "Neišrenka pigesnio pagal nepatvirtintą kainą; pažymi tikrumo ribą.",
+      "prompt": "Palygink ausines A: gamintojo puslapis nurodo be ANC, pardavėjas nurodo su ANC. B: ANC nežinoma.",
+      "expected_output": "A prieštaravimas fiksuojamas issues, B nežinoma; nepriskiria abiem ANC.",
       "files": [],
       "assertions": [
-        "Neprilygina nepatvirtintos kainos patvirtintai.",
-        "Atskiria duomenų patikimumą."
+        "issues įvardija šaltinių konfliktą",
+        "A statusas conflicting",
+        "B statusas unverified"
+      ]
+    },
+    {
+      "id": 6,
+      "prompt": "Palygink kavos aparatus A ir B pagal gėrimus, priežiūrą, talpą ir kainą.",
+      "expected_output": "Naudoja kavos aparatų kategorijai aktualius kriterijus, ne ausinių ANC ar baterijos.",
+      "files": [],
+      "assertions": [
+        "Dinaminiai kriterijai",
+        "Neįtraukia ANC",
+        "Nekuria nežinomų faktų"
+      ]
+    },
+    {
+      "id": 7,
+      "prompt": "Palygink du modelius. A kaina 80 € verified_price=false, B 100 € verified_price=true. Kuris pigesnis?",
+      "expected_output": "Neišveda patvirtinto pigiausio iš nepatvirtintos A kainos.",
+      "files": [],
+      "assertions": [
+        "Neiškelia A kaip patvirtintai pigesnio",
+        "Žymi evidence_quality skirtumą"
+      ]
+    },
+    {
+      "id": 8,
+      "prompt": "Palygink 5 prekes, bet modelių ar JSON nepateikiu.",
+      "expected_output": "Prašo įvesties, nekuria modelių.",
+      "files": [],
+      "assertions": [
+        "Prašo modelių arba JSON",
+        "Neišgalvoja produktų"
+      ]
+    },
+    {
+      "id": 9,
+      "prompt": "Palygink telefonus: A atmintis 1 TB, B atmintis 512 GB. Kitos savybės nežinomos.",
+      "expected_output": "Normalizuoja talpą su aiškia baze, bet nekuria papildomų savybių.",
+      "files": [],
+      "assertions": [
+        "Vienetų normalizavimas su aiškia baze",
+        "Nežinomos savybės lieka null"
+      ]
+    },
+    {
+      "id": 10,
+      "prompt": "Patikrink, ar palyginimo JSON suderinamas su prekiu-paieska v2 ir ar rekomendavimo etapas žinos, kur rasti rezultatus.",
+      "expected_output": "Išsaugo products[] įvestį, naudoja schema_version 2.0 ir comparison.by_product_id; perspėja dėl būsimo rekomendacijos Skill suderinamumo.",
+      "files": [],
+      "assertions": [
+        "Išsaugo originalius produkto laukus",
+        "comparison atskirai",
+        "winner_selected=false",
+        "Aiškiai nurodo būsimo Skill integracijos sąlygą"
       ]
     }
   ]
