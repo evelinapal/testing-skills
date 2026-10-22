@@ -1,0 +1,58 @@
+{
+  "skill_name": "prekiu-palyginimas",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Naudok prekiu-palyginimas ir palygink ankstesnio prekiu-paieska etapo 5 Apple ausinių modelius iki 300 €.",
+      "expected_output": "Palyginimo lentelė, kainų patikimumo žymos, ANC ir kitų palyginamų savybių skirtumai, privalumai bei kompromisai, validus JSON be galutinio laimėtojo.",
+      "files": [],
+      "assertions": [
+        "Neišrenka galutinio modelio.",
+        "Nesupainioja patvirtintų ir nepatvirtintų alternatyvių kainų.",
+        "Išsaugo modelių ID ir produkto nuorodas.",
+        "Grąžina criteria_values, advantages, tradeoffs."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Palygink ausines A (100 €, ANC, baterija 6 val. su ANC) ir B (130 €, ANC, baterija 30 val. su dėklu).",
+      "expected_output": "Neprilygina 6 val. vieno įkrovimo ir 30 val. su dėklu; pažymi skirtingus baterijos matavimo pagrindus.",
+      "files": [],
+      "assertions": [
+        "Aiškiai atskiria vieno įkrovimo ir su dėklu laiką.",
+        "Nepateikia klaidinančio baterijos laimėtojo."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Palygink tris ausines: A 90 € ANC; B 110 € ANC; C 95 € ANC nežinomas. Privalomas ANC ir biudžetas 100 €.",
+      "expected_output": "A atitinka, B neatitinka biudžeto, C ANC atitikimas nepatvirtintas; nepasirenka laimėtojo.",
+      "files": [],
+      "assertions": [
+        "Neatmeta C kaip neturinčio ANC be įrodymo.",
+        "B pažymi kaip viršijantį biudžetą.",
+        "Nerenka laimėtojo."
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "Palygink penkias prekes, bet nepateikiu nei jų pavadinimų, nei paieškos rezultatų.",
+      "expected_output": "Paprašo prekiu-paieska JSON arba modelių sąrašo; neišgalvoja prekių.",
+      "files": [],
+      "assertions": [
+        "Prašo trūkstamos įvesties.",
+        "Nekuria netikrų modelių."
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "Palygink du modelius, kurių vieno kaina verified_price=false, o kito verified_price=true; pasakyk kuris pigesnis.",
+      "expected_output": "Neišrenka pigesnio pagal nepatvirtintą kainą; pažymi tikrumo ribą.",
+      "files": [],
+      "assertions": [
+        "Neprilygina nepatvirtintos kainos patvirtintai.",
+        "Atskiria duomenų patikimumą."
+      ]
+    }
+  ]
+}
