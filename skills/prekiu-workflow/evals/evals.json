@@ -1,0 +1,138 @@
+{
+  "skill_name": "prekiu-workflow",
+  "version": "1.0",
+  "evals": [
+    {
+      "id": 1,
+      "name": "Paprasta visa eiga",
+      "prompt": "Surask, palygink ir rekomenduok belaides ausines iki 300 € Lietuvoje.",
+      "expected_output": "Trys nuoseklūs etapai, iki 5 modelių, galutinis JSON ir pagrįstas sprendimas.",
+      "assertions": [
+        "Etapų seka A → B → C išlaikyta",
+        "Duomenų ir patikimumo būsenos nebuvo išgalvotos",
+        "Neprarasti produkto ID ir kritinės problemos"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Trūksta biudžeto",
+      "prompt": "Surask geriausią telefoną.",
+      "expected_output": "Prieš paiešką paklausia esminio biudžeto.",
+      "assertions": [
+        "Etapų seka A → B → C išlaikyta",
+        "Duomenų ir patikimumo būsenos nebuvo išgalvotos",
+        "Neprarasti produkto ID ir kritinės problemos"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Neegzistuojantis modelis",
+      "prompt": "Surask Apple ausines, įtrauktas pardavėjo, bet neturinčias patvirtintos tapatybės.",
+      "expected_output": "Nepriskiria nepatvirtinto modelio savybių; perduoda problemą iki rekomendacijos.",
+      "assertions": [
+        "Etapų seka A → B → C išlaikyta",
+        "Duomenų ir patikimumo būsenos nebuvo išgalvotos",
+        "Neprarasti produkto ID ir kritinės problemos"
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Pasiūlymo kaina su sąlyga",
+      "prompt": "Palygink modelius, kurių pigiausias pasiūlymas tik su lojalumo kortele.",
+      "expected_output": "Nevertina sąlyginės kainos kaip įprastos.",
+      "assertions": [
+        "Etapų seka A → B → C išlaikyta",
+        "Duomenų ir patikimumo būsenos nebuvo išgalvotos",
+        "Neprarasti produkto ID ir kritinės problemos"
+      ]
+    },
+    {
+      "id": 5,
+      "name": "Skirtinga baterijos bazė",
+      "prompt": "Palygink ausines, kurių baterija pateikta vienu įkrovimu ir su dėklu.",
+      "expected_output": "Nedaro neteisingo tiesioginio baterijos palyginimo.",
+      "assertions": [
+        "Etapų seka A → B → C išlaikyta",
+        "Duomenų ir patikimumo būsenos nebuvo išgalvotos",
+        "Neprarasti produkto ID ir kritinės problemos"
+      ]
+    },
+    {
+      "id": 6,
+      "name": "Visi modeliai neatitinka",
+      "prompt": "Surask ir rekomenduok prekę, bet visi rasti modeliai viršija biudžetą.",
+      "expected_output": "Grąžina insufficient_evidence, nesukuria biudžetą atitinkančio modelio.",
+      "assertions": [
+        "Etapų seka A → B → C išlaikyta",
+        "Duomenų ir patikimumo būsenos nebuvo išgalvotos",
+        "Neprarasti produkto ID ir kritinės problemos"
+      ]
+    },
+    {
+      "id": 7,
+      "name": "Neprieinamas GitHub",
+      "prompt": "Vykdyk workflow, kai vienas iš trijų SKILL.md failų nepasiekiamas.",
+      "expected_output": "Aiškiai pažymi blocked, neapsimeta perskaitęs instrukcijas.",
+      "assertions": [
+        "Etapų seka A → B → C išlaikyta",
+        "Duomenų ir patikimumo būsenos nebuvo išgalvotos",
+        "Neprarasti produkto ID ir kritinės problemos"
+      ]
+    },
+    {
+      "id": 8,
+      "name": "Schema ID neatitikimas",
+      "prompt": "Po paieškos produktų ID 1,2, bet palyginime by_product_id turi 1,3.",
+      "expected_output": "Aptinka neatitikimą ir sustabdo neteisingą perdavimą.",
+      "assertions": [
+        "Etapų seka A → B → C išlaikyta",
+        "Duomenų ir patikimumo būsenos nebuvo išgalvotos",
+        "Neprarasti produkto ID ir kritinės problemos"
+      ]
+    },
+    {
+      "id": 9,
+      "name": "Nauji prieštaringi faktai",
+      "prompt": "Rekomendavimo metu oficialus šaltinis paneigia palyginimo ANC savybę.",
+      "expected_output": "Atnaujina paveiktą palyginimą prieš sprendimą.",
+      "assertions": [
+        "Etapų seka A → B → C išlaikyta",
+        "Duomenų ir patikimumo būsenos nebuvo išgalvotos",
+        "Neprarasti produkto ID ir kritinės problemos"
+      ]
+    },
+    {
+      "id": 10,
+      "name": "Nėra prioritetų",
+      "prompt": "Surask ir rekomenduok kavos aparatą iki 400 €, prioritetų neturiu.",
+      "expected_output": "Neišgalvoja prioritetų ar balų; pateikia sąlyginius kompromisus.",
+      "assertions": [
+        "Etapų seka A → B → C išlaikyta",
+        "Duomenų ir patikimumo būsenos nebuvo išgalvotos",
+        "Neprarasti produkto ID ir kritinės problemos"
+      ]
+    },
+    {
+      "id": 11,
+      "name": "Nepatikrintas likutis",
+      "prompt": "Prekė turi seną kainą ir nežinomą likutį.",
+      "expected_output": "Neskiria recommended be kritinių patikrų; pažymi sąlyginį rezultatą.",
+      "assertions": [
+        "Etapų seka A → B → C išlaikyta",
+        "Duomenų ir patikimumo būsenos nebuvo išgalvotos",
+        "Neprarasti produkto ID ir kritinės problemos"
+      ]
+    },
+    {
+      "id": 12,
+      "name": "Trijų JSON perdavimas",
+      "prompt": "Atlik visą eigą ir pateik tris JSON rezultatus.",
+      "expected_output": "A JSON, B schema 2.0, C schema 1.0, ID ir URL išsaugoti.",
+      "assertions": [
+        "Etapų seka A → B → C išlaikyta",
+        "Duomenų ir patikimumo būsenos nebuvo išgalvotos",
+        "Neprarasti produkto ID ir kritinės problemos"
+      ]
+    }
+  ]
+}
