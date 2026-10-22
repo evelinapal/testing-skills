@@ -3,21 +3,58 @@
   "evals": [
     {
       "id": 1,
-      "prompt": "Surask 5 belaides ausines iki 100 € Lietuvoje, su ANC ir oficialiomis pardavėjų nuorodomis.",
-      "expected_output": "Iki 5 skirtingų modelių, kainos neviršija 100 €, ANC patikrintas oficialiai, lentelė ir validus JSON.",
-      "files": []
+      "prompt": "Surask 5 belaides ausines iki 200 € Lietuvoje. Nurodyk parduotuves, kainas, savybes ir JSON kitam skill.",
+      "expected_output": "Paieška bent 3 pardavėjų svetainėse, jei įmanoma; siekiama 8–10 kandidatų, iki 5 skirtingų modelių, tik patvirtintos kainos, alternatyvūs pasiūlymai, patikrinimo ribos ir teisingas JSON.",
+      "files": [],
+      "assertions": [
+        "Nurodo bent 3 tikrintus pardavėjus arba pagrįstą ribojimą.",
+        "Nesustoja ties pirmais 5 kandidatais, jei įmanoma.",
+        "Neįtraukia nepatvirtintos kainos į biudžetą atitinkančių prekių sąrašą.",
+        "JSON turi checked_sellers, products ir alternative_offers."
+      ]
     },
     {
       "id": 2,
-      "prompt": "Ieškau kavos aparato, bet nežinau kiek galiu išleisti.",
-      "expected_output": "Paklausia biudžeto prieš vykdydamas paiešką; neišgalvoja rezultatų.",
-      "files": []
+      "prompt": "Surask 5 belaides ausines iki 100 € Lietuvoje su aktyviu triukšmo slopinimu (ANC).",
+      "expected_output": "Iki 5 skirtingų ANC modelių, gamintojo specifikacijų patikra, kelių pardavėjų kainų patikra ir validus JSON.",
+      "files": [],
+      "assertions": [
+        "ANC tikrinamas pagal oficialią specifikaciją arba pažymima, kad nepatvirtinta.",
+        "Modelių kainos neviršija 100 € ir patvirtintos pardavėjo puslapyje.",
+        "Nėra pasikartojančių modelių."
+      ]
     },
     {
       "id": 3,
+      "prompt": "Ieškau kavos aparato, bet nežinau kiek galiu išleisti.",
+      "expected_output": "Paklausia biudžeto, nevykdo fiktyvios paieškos.",
+      "files": [],
+      "assertions": [
+        "Paklausia biudžeto.",
+        "Neišgalvoja modelių ar kainų."
+      ]
+    },
+    {
+      "id": 4,
       "prompt": "Surask 5 naujus iPhone iki 100 € Lietuvoje.",
-      "expected_output": "Nepateikia išgalvotų modelių ar kainų; jei patikimų variantų nėra, aiškiai nurodo, kad nerasta.",
-      "files": []
+      "expected_output": "Nesukuria išgalvotų pasiūlymų; jei tinkamų naujų modelių nėra, aiškiai nurodo trūkumą.",
+      "files": [],
+      "assertions": [
+        "Neviršija 100 € biudžeto.",
+        "Nesukuria netikrų prekių nuorodų.",
+        "Pateikia mažiau nei 5 variantus, jei tiek nepatvirtinta."
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "Surask 5 belaides ausines iki 150 € Lietuvoje, tačiau parduotuvėse matau kainas tik su lojalumo kortele.",
+      "expected_output": "Atskiria įprastą ir sąlyginę kainą; biudžetui naudoja visiems prieinamą kainą, nebent leista kitaip.",
+      "files": [],
+      "assertions": [
+        "Lojalumo kainą aiškiai pažymi kaip sąlyginę.",
+        "Nepateikia sąlyginės kainos kaip visiems prieinamos.",
+        "Pažymi neprieinamas kainas ar likučius."
+      ]
     }
   ]
 }
