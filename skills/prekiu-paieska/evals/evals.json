@@ -1,0 +1,23 @@
+{
+  "skill_name": "prekiu-paieska",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Surask 5 belaides ausines iki 100 € Lietuvoje, su ANC ir oficialiomis pardavėjų nuorodomis.",
+      "expected_output": "Iki 5 skirtingų modelių, kainos neviršija 100 €, ANC patikrintas oficialiai, lentelė ir validus JSON.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "Ieškau kavos aparato, bet nežinau kiek galiu išleisti.",
+      "expected_output": "Paklausia biudžeto prieš vykdydamas paiešką; neišgalvoja rezultatų.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "Surask 5 naujus iPhone iki 100 € Lietuvoje.",
+      "expected_output": "Nepateikia išgalvotų modelių ar kainų; jei patikimų variantų nėra, aiškiai nurodo, kad nerasta.",
+      "files": []
+    }
+  ]
+}
