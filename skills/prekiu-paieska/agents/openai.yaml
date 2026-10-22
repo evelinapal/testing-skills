@@ -1,0 +1,4 @@
+interface:
+  display_name: "Prekių paieška"
+  short_description: "Suranda iki 5 prekių oficialiuose šaltiniuose"
+  default_prompt: "Surask iki 5 tinkamų prekių pagal mano biudžetą ir poreikius, patikrink oficialius šaltinius ir paruošk duomenis palyginimui."
