@@ -1,0 +1,4 @@
+interface:
+  display_name: "Prekių palyginimas"
+  short_description: "Palygina iki 5 modelių pagal kainą ir savybes"
+  default_prompt: "Palygink prekiu-paieska Skill surastus modelius pagal kainą, savybes ir mano kriterijus. Parodyk kompromisus ir paruošk JSON kitam rekomendacijos etapui, bet dar nerink galutinio laimėtojo."
