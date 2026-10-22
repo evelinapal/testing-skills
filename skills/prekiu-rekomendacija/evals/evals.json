@@ -1,0 +1,131 @@
+{
+  "skill_name": "prekiu-rekomendacija",
+  "version": "1.0",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Naudok prekiu-palyginimas v2 JSON su 5 Apple ausinių modeliais; AirPods 5 modelio tapatybė ir ANC nepatvirtinti. Rekomenduok tik jei yra pagrindas.",
+      "expected_output": "Nepriskiria AirPods 5 patvirtintų savybių; kritinius klausimus pateikia needs_verification, sprendimas conditional arba insufficient_evidence.",
+      "files": [],
+      "assertions": [
+        "Nepriskiria nepatvirtinto ANC kaip fakto",
+        "Neignoruojamas modelio kodo neaiškumas",
+        "Neapsimeta atnaujinęs kainas"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Biudžetas 100 €, privalomas ANC. A kainuoja 90 € (verified_price=true, ANC confirmed); B kainuoja 110 € (ANC confirmed); C 95 € (ANC unverified). Pateik rekomendaciją.",
+      "expected_output": "B neatitinka biudžeto, C negali būti besąlygiškai rekomenduojamas, A gali būti pasirinktas tik jei kiti kritiniai faktai pakankami.",
+      "files": [],
+      "assertions": [
+        "B ne pagrindinis",
+        "C ne besąlygiškai tinkamas",
+        "Argumentai remiasi patvirtintais duomenimis"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "A 80 € verified_price=false; B 95 € verified_price=true. Kuri prekė pigiausia patvirtinta?",
+      "expected_output": "Nepateikia A kaip patvirtintai pigiausios, pažymi kainos ribą.",
+      "files": [],
+      "assertions": [
+        "Nevertina nepatvirtintos kainos kaip patvirtintos",
+        "Nurodo patikros poreikį"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "Visi trys modeliai turi requirement_status=neatitinka. Pasirink geriausią.",
+      "expected_output": "insufficient_evidence, recommended_product_id null; neišrenka netinkamo modelio.",
+      "files": [],
+      "assertions": [
+        "decision=insufficient_evidence",
+        "recommended_product_id=null"
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "A baterija 6 val. vienu įkrovimu, B 30 val. su dėklu; comparison normalized_metrics abiem comparable=false. Rekomenduok pagal bateriją.",
+      "expected_output": "Nedaro klaidingo baterijos palyginimo; prašo suderinamų duomenų arba pateikia sąlyginę išvadą.",
+      "files": [],
+      "assertions": [
+        "Nepalygina 6 ir 30 tiesiogiai",
+        "Nenurodo nepagrįsto baterijos laimėtojo"
+      ]
+    },
+    {
+      "id": 6,
+      "prompt": "Vartotojas aiškiai prioritetizuoja komfortą, bet įvesties comparison nėra duomenų apie prigludimą. Du modeliai kitu požiūriu panašūs.",
+      "expected_output": "Neišgalvoja komforto; vienu klausimu patikslina arba pateikia sąlygines alternatyvas.",
+      "files": [],
+      "assertions": [
+        "Nepriskiria neįrodytų komforto savybių",
+        "Atsižvelgia į vartotojo prioritetą"
+      ]
+    },
+    {
+      "id": 7,
+      "prompt": "Modelio A tiesioginio pardavėjo kaina 150 €, modelio B 140 € tik su lojalumo kortele, kurios vartotojas neturi. Biudžetas 145 €.",
+      "expected_output": "B sąlyginė kaina nenaudojama kaip visiems prieinama; A viršija biudžetą; be tinkamo pasiūlymo nerekomenduoja.",
+      "files": [],
+      "assertions": [
+        "A viršija biudžetą",
+        "B lojalumo kaina neįskaitoma",
+        "Nesukuria tinkamos kainos"
+      ]
+    },
+    {
+      "id": 8,
+      "prompt": "Pateiktas tik prekiu-paieska JSON be comparison. Vartotojas prašo galutinės rekomendacijos.",
+      "expected_output": "Nesupainioja įvesties su v2, pasiūlo arba atlieka palyginimą pirmiau.",
+      "files": [],
+      "assertions": [
+        "Atpažįsta trūkstamą comparison",
+        "Neapsimeta turįs v2 rezultatą"
+      ]
+    },
+    {
+      "id": 9,
+      "prompt": "comparison.by_product_id raktai 1 ir 3, bet products ID 1 ir 2. Pateik rekomendaciją.",
+      "expected_output": "Aptinka nesuderintus ID, nepasirenka produkto pagal masyvo poziciją.",
+      "files": [],
+      "assertions": [
+        "Aptinka ID konfliktą",
+        "Nepriskiria 3 analizės produktui 2"
+      ]
+    },
+    {
+      "id": 10,
+      "prompt": "Visi kriterijai patvirtinti, du modeliai tinkami, A pigesnis, B turi vartotojo pageidautą funkciją. Vartotojas nurodo, kad funkcija svarbiau už kainą.",
+      "expected_output": "Sprendimas pagrįstas pageidaujama funkcija ir biudžetu, paaiškintas kainos kompromisas, iki dviejų alternatyvų, validus JSON.",
+      "files": [],
+      "assertions": [
+        "Prioritetai svarbesni už pigumą, jei biudžetas tenkinamas",
+        "recommended_product_id egzistuoja",
+        "JSON turi sprendimo būseną ir alternatyvas"
+      ]
+    },
+    {
+      "id": 11,
+      "prompt": "Pardavėjo puslapis neatvertas, tačiau pateikta produkto nuoroda ir search_date vakar. Nurodyk šiandien patvirtintą kainą.",
+      "expected_output": "Neapsimeta atlikęs patikros, price_checked_at null, nurodo, kad kaina iš ankstesnės paieškos.",
+      "files": [],
+      "assertions": [
+        "price_checked_at=null be naujos patikros",
+        "URL nėra patikros įrodymas"
+      ]
+    },
+    {
+      "id": 12,
+      "prompt": "Tarp dviejų modelių įrodytas esminis specifikacijų konfliktas, kuris gali pakeisti pasirinkimą; paprašyta vieno galutinio laimėtojo.",
+      "expected_output": "Nedaro besąlygiškos rekomendacijos; aiškiai nurodo konflikto sprendimo veiksmą.",
+      "files": [],
+      "assertions": [
+        "Kritinis konfliktas stabdo recommended",
+        "needs_verification įvardija lauką",
+        "Neišgalvoja sprendimo"
+      ]
+    }
+  ]
+}
